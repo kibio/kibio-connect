@@ -159,21 +159,21 @@
         </h3>
         <div class="instructions">
           <div id="container">
-        <img src="./img/kibio.set.up-10" class="map-trans" alt="Map / Carte" usemap="#region-map" />
-        <div class="map-hovers">
-            <img src="./img/set.up.steps-01.png" alt="1" />
-            <img src="./img/set.up.steps-02.png" alt="2" />git s
-            <img src="./img/set.up.steps-03.png" alt="3" />
-            <img src="./img/set.up.steps-04.png" alt="4" />
-            <img src="./img/set.up.steps-05.png" alt="5" />  
+        <img id="imagePlaceholder" src="./img/kibio.set.up-10.png" width="614" height="583" class="map-trans" alt="Map" usemap="#region-map" />
+<!--         <div class="map-hovers">
+            <img src="./img/set.up.steps-01.png" alt="one" />
+            <img src="./img/set.up.steps-02.png" alt="two" />
+            <img src="./img/set.up.steps-03.png" alt="three" />
+            <img src="./img/set.up.steps-04.png" alt="four" />
+            <img src="./img/set.up.steps-05.png" alt="five" />  
         </div>
-</div>
+ --></div>
     <map name="region-map" id="region-map" class="map-areas">
-    <area shape="poly" coords="138,292,231,382,74,508,7,430" href="#d0" alt="1" />
-    <area shape="poly" coords="93,136,93,113,82,112,77,65,57,51,58,82,41,122,33,133,58,138,74,126" href="#d1" alt="2" />
-    <area shape="poly" coords="98,112,118,123,131,149,130,165,108,161,97,138" href="#d2" alt="3" />
-    <area shape="poly" coords="68,2,100,29,124,33,133,74,155,96,159,145,134,146,121,119,101,110,83,107,83,65,55,45,54,16" href="#d3" alt="4" />
-    <area shape="poly" coords="151,151,152,167,157,176,152,179,137,178,124,172,133,169,135,150" href="#d4" alt="5" />
+    <area shape="poly" coords="138,292,231,382,74,508,7,430" href="#d0" alt="one" />
+    <area shape="poly" coords="327,152,379,203,510,69,455,28" href="#d1" alt="two" />
+    <area shape="poly" coords="367,231,418,231,575,133,513.95" href="#d2" alt="three" />
+    <area shape="poly" coords="228,117,257,91,315,138,342,274,467,401,439,473,290,327,277,170," href="#d3" alt="four" />
+    <area shape="poly" coords="217,412,246,440,146,561,111,501" href="#d4" alt="five" />
     </map>
         </div>
       </div>
@@ -189,21 +189,25 @@
       <!-- <img src="./img/arrows_pixels_blue-right.png"> -->
     </div>
   </div>
-    <script> 
-      $(document).ready(function() {
 
-    $(".map-areas area").mouseenter(function() {
-        var idx = $(".map-areas area").index(this);
-        $(".map-hovers img:eq(" + idx + ")").show();
-        return false;
-    }).mouseleave(function() {
-        $(".map-hovers img").hide();
-        return false;
+
+    <script src="./common/js/jquery.js"></script>
+    <script src="./common/js/bootstrap.min.js"></script>
+
+        <script> 
+      $(function() {
+
+    $("#region-map area").each(function(){
+      $(this).hover(function() {
+        var idx = $(".map-areas area").index(this) +1;
+        $("#imagePlaceholder").attr("src", "./img/set.up.steps-0"+idx+".png");
+      },
+      function(){
+        $("#imagePlaceholder").attr("src", "./img/kibio.set.up-10.png");
+      });
     });
 
 });
 </script>
-    <script src="./common/js/jquery.js"></script>
-    <script src="./common/js/bootstrap.min.js"></script>
   </body>
 </html>
