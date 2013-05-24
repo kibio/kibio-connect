@@ -162,7 +162,7 @@
         <img src="./img/kibio.set.up-10" class="map-trans" alt="Map / Carte" usemap="#region-map" />
         <div class="map-hovers">
             <img src="./img/set.up.steps-01.png" alt="1" />
-            <img src="./img/set.up.steps-02.png" alt="2" />
+            <img src="./img/set.up.steps-02.png" alt="2" />git s
             <img src="./img/set.up.steps-03.png" alt="3" />
             <img src="./img/set.up.steps-04.png" alt="4" />
             <img src="./img/set.up.steps-05.png" alt="5" />  
@@ -189,6 +189,20 @@
       <!-- <img src="./img/arrows_pixels_blue-right.png"> -->
     </div>
   </div>
+    <script> 
+      $(document).ready(function() {
+
+    $(".map-areas area").mouseenter(function() {
+        var idx = $(".map-areas area").index(this);
+        $(".map-hovers img:eq(" + idx + ")").show();
+        return false;
+    }).mouseleave(function() {
+        $(".map-hovers img").hide();
+        return false;
+    });
+
+});
+</script>
     <script src="./common/js/jquery.js"></script>
     <script src="./common/js/bootstrap.min.js"></script>
   </body>
