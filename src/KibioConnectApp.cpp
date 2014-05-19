@@ -25,13 +25,16 @@
 
 #include "KibioConnectApp.h"
 
-//------------------------------------------------------------------------------
-void KibioConnectApp::exit() {
+
+
+void KibioConnectApp::exit()
+{
     server->unregisterWebSocketEvents(this); // not needed
 }
 
-//------------------------------------------------------------------------------
-void KibioConnectApp::setup() {
+
+void KibioConnectApp::setup()
+{
     ofxZeroconf::RegisterBrowseServiceEvents(this);
 
     browseRef = ofxZeroconf::browse("_kibio_player._tcp","local.");
@@ -51,12 +54,12 @@ void KibioConnectApp::setup() {
 
 }
 
-//------------------------------------------------------------------------------
-void KibioConnectApp::update() {
 
+void KibioConnectApp::update()
+{
 }
 
-//------------------------------------------------------------------------------
+
 void KibioConnectApp::draw() {
     ofBackground(255);
     ofSetColor(255);
@@ -73,22 +76,26 @@ void KibioConnectApp::draw() {
     
 }
 
-//------------------------------------------------------------------------------
-void KibioConnectApp::gotMessage(ofMessage msg) {
+
+void KibioConnectApp::gotMessage(ofMessage msg)
+{
 }
 
-//------------------------------------------------------------------------------
-void KibioConnectApp::onOpenEvent(ofxWebSocketEventArgs& _evtArgs) {
+
+void KibioConnectApp::onOpenEvent(ofxWebSocketEventArgs& _evtArgs)
+{
     ofSendMessage("Got open event.");
 }
 
-//------------------------------------------------------------------------------
-void KibioConnectApp::onCloseEvent(ofxWebSocketEventArgs& _evtArgs) {
+
+void KibioConnectApp::onCloseEvent(ofxWebSocketEventArgs& _evtArgs)
+{
     ofSendMessage("Got close event.");
 }
 
-//------------------------------------------------------------------------------
-void KibioConnectApp::onFrameReceivedEvent(ofxWebSocketFrameEventArgs& _evtArgs) {
+
+void KibioConnectApp::onFrameReceivedEvent(ofxWebSocketFrameEventArgs& _evtArgs)
+{
     ofSendMessage("Got frame received event.");
     cout << "aaaaa---> " << _evtArgs.hasError() << endl;
     if(_evtArgs.frame.isBinary()) {
@@ -98,17 +105,19 @@ void KibioConnectApp::onFrameReceivedEvent(ofxWebSocketFrameEventArgs& _evtArgs)
     }    
 }
 
-//------------------------------------------------------------------------------
-void KibioConnectApp::onFrameSentEvent(ofxWebSocketFrameEventArgs& _evtArgs) {
+
+void KibioConnectApp::onFrameSentEvent(ofxWebSocketFrameEventArgs& _evtArgs)
+{
     ofSendMessage("Got frame sent event.");
 }
 
-//------------------------------------------------------------------------------
-void KibioConnectApp::onErrorEvent(ofxWebSocketEventArgs& _evtArgs) {
+
+void KibioConnectApp::onErrorEvent(ofxWebSocketEventArgs& _evtArgs)
+{
     ofSendMessage("Got error event.");
 }
 
-//------------------------------------------------------------------------------
+
 void KibioConnectApp::commandInterpreter(const string& data) {
     ofxJSONElement json;
     if(json.parse(data)) {
@@ -148,7 +157,8 @@ void KibioConnectApp::commandInterpreter(const string& data) {
     cout << "frame=" << data << endl;
 }
 
-//------------------------------------------------------------------------------
-bool KibioConnectApp::startsWith(const string& target, const string& prefix) {
+
+bool KibioConnectApp::startsWith(const string& target, const string& prefix)
+{
     return !target.compare(0, prefix.size(), prefix);
 }

@@ -26,14 +26,14 @@
 #pragma once
 
 
+#include <json/json.h>
 #include "ofMain.h"
-#include "ofBaseApp.h"
-#include "ofxJSONElement.h"
-#include "ofxWebSocketServerBasic.h"
+#include "ofxHTTP.h"
 #include "ofxZeroconf.h"
 
 
-class KibioConnectApp : public ofBaseApp {
+class KibioConnectApp: public ofBaseApp
+{
 public:
     void setup();
     void update();
@@ -55,39 +55,46 @@ public:
     
     Zeroconf::BrowseRef  browseRef;
 
-    void onBrowseError(const Zeroconf::BrowseErrorEventArgs& args) {
+    void onBrowseError(const Zeroconf::BrowseErrorEventArgs& args)
+    {
         cout << "BROWSER ERROR: " << args.error.getMessage() << endl;
     }
 
-    void onBrowseServiceFound(const Zeroconf::BrowseServiceEventArgs& args) {
+    void onBrowseServiceFound(const Zeroconf::BrowseServiceEventArgs& args)
+    {
         cout << "SERVICE FOUND" << endl;
         cout <<  ofToString(args.service) << endl;
         //        ofxZeroconf::resolve(args.service);
     }
 
-    void onBrowseServiceRemoved(const Zeroconf::BrowseServiceEventArgs& args) {
+    void onBrowseServiceRemoved(const Zeroconf::BrowseServiceEventArgs& args)
+    {
         cout << "SERVICE REMOVED" << endl;
         cout <<  ofToString(args.service) << endl;
 
     }
 
-    void onResolveError(const Zeroconf::BrowseErrorEventArgs& args) {
+    void onResolveError(const Zeroconf::BrowseErrorEventArgs& args)
+    {
         cout << "RESOLVE ERROR" << endl;
         cout <<  ofToString(args.error.getMessage()) << endl;
     }
 
-    void onServiceResolved(const Zeroconf::BrowseServiceEventArgs& args) {
+    void onServiceResolved(const Zeroconf::BrowseServiceEventArgs& args)
+    {
         cout << "SERVICE RESOLVED" << endl;
         cout <<  ofToString(args.service) << endl;
         //        ofxZeroconf::resolveHost(args.service.getHost());
     }
 
-    void onHostResolveError(const Zeroconf::BrowseErrorEventArgs& args) {
+    void onHostResolveError(const Zeroconf::BrowseErrorEventArgs& args)
+    {
         cout << "HOST RESOLVE ERROR" << endl;
         cout <<  ofToString(args.error.getMessage()) << endl;
     }
 
-    void onHostResolved(const Zeroconf::ResolveHostEventArgs& args) {
+    void onHostResolved(const Zeroconf::ResolveHostEventArgs& args)
+    {
         cout << "HOST RESOLVED" << endl;
         cout <<  ofToString(args.ipAddress.toString()) << endl;
         cout <<  ofToString(args.ttl) << endl;
